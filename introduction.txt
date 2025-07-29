@@ -1,0 +1,59 @@
+======================================
+HANGMAN GAME: Introduction & Development
+======================================
+
+Welcome to this Hangman game! This document provides an overview of how the game was made and the functions that power it.
+
+--------------------------------------
+
+ How the Game Was Made
+
+This Hangman game is developed in C, a powerful and efficient programming language. It's built as a console application, meaning you interact with it through text commands in your terminal or command prompt.
+
+The development focused on creating a clear, interactive, and functional game experience. Key aspects of its creation include:
+
+1. Core Logic: Implementing the classic Hangman rules, including letter guessing, tracking incorrect attempts, and determining win/loss conditions.
+2. Word Management: Storing a collection of words along with helpful hints to guide the player.
+3. User Interface: Providing a text-based visual representation of the word's progress and the evolving Hangman figure.
+4. Replayability: Adding the option for players to easily start a new game after completing a round, enhancing engagement.
+
+--------------------------------------
+
+ Game Functions Explained
+
+The game's functionality is modularized into several key C functions, each responsible for a specific task:
+
+# `main()`
+This is the heart of the program where the game's flow is controlled.
+   - Initializes the random number generator.
+   - Defines the array of secret words and their hints.
+   - Prints the welcome message and game rules.
+   - Contains the main game loop that allows for multiple rounds of play.
+   - Manages the setup for each new game (selecting a word, resetting tries, etc.).
+   - Handles user input for guesses and the "play again" choice.
+   - Determines if the player wins or loses and displays the appropriate message.
+
+# `displayWord(const char word[], const bool guessed[])`
+This function is responsible for showing the current state of the hidden word.
+   - It iterates through the `secretWord`.
+   - For each letter, it checks if that letter has been `guessed` by the player.
+   - If a letter has been guessed, it's displayed; otherwise, an underscore (`_`) is shown, revealing the progress of the player's guesses.
+
+# `drawHangman(int tries)`
+This function visually represents the Hangman figure.
+   - It takes the current number of `tries` (incorrect guesses) as input.
+   - Based on the number of `tries`, it draws the corresponding part of the hangman figure. Each incorrect guess adds another piece to the drawing, building towards the complete figure.
+
+--------------------------------------
+
+ Playing the Game
+
+The game is straightforward:
+   1. The computer secretly chooses a word.
+   2. You'll see underscores representing the letters of the word and a hint.
+   3. Enter one letter at a time to guess.
+   4. Correct guesses reveal letters; incorrect guesses contribute to the Hangman drawing.
+   5. You have 6 tries before the Hangman is complete and you lose.
+   6. Try to guess the word before time runs out!
+
+Enjoy the game!
