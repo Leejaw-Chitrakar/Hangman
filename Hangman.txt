@@ -1,0 +1,132 @@
+Let's break down this C code for a Hangman game into its key parts:
+
+**1. Header Files and Definitions:**
+
+```c
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define MAX_WORD_LENGTH 50
+#define MAX_TRIES 6
+```
+
+* **`ctype.h`**: Provides functions for character classification (e.g., `tolower`).
+* **`stdbool.h`**: Defines the `bool` data type (true/false).
+* **`stdio.h`**: Standard input/output functions (e.g., `printf`, `scanf`).
+* **`stdlib.h`**: General utility functions (e.g., `rand`, `srand`).
+* **`string.h`**: String manipulation functions (e.g., `strlen`, `strcmp`).
+* **`time.h`**: Functions for working with time (e.g., `time`).
+* **`MAX_WORD_LENGTH`**: Maximum length of the secret word.
+* **`MAX_TRIES`**: Maximum number of incorrect guesses allowed.
+
+**2. `WordWithHint` Structure:**
+
+```c
+struct WordWithHint {
+    char word[MAX_WORD_LENGTH];
+    char hint[MAX_WORD_LENGTH];
+};
+```
+
+* This structure groups a word and its corresponding hint together. It makes it easy to manage the list of words in the game.
+
+**3. `displayWord` Function:**
+
+```c
+void displayWord(const char word[], const bool guessed[]) {
+    printf("Word: ");
+    for (int i = 0; word[i] != '\0'; i++) {
+        if (guessed[word[i] - 'a']) {
+            printf("%c ", word[i]);
+        } else {
+            printf("_ ");
+        }
+    }
+    printf("\n");
+}
+```
+
+* This function displays the current state of the secret word.
+* It iterates through the `word` array.
+* If a letter has been guessed correctly (indicated by `guessed[word[i] - 'a']` being true), it prints the letter.
+* Otherwise, it prints an underscore (`_`).
+* The subtraction of 'a' is used to index into the guessed array.
+
+**4. `drawHangman` Function:**
+
+```c
+void drawHangman(int tries) {
+    const char* hangmanParts[] = {
+        "    _________", "    |        |",
+        "    |        O", "    |       /|\\",
+        "    |       / \\", "    |"
+    };
+
+    printf("\n");
+    for (int i = 0; i <= tries; i++) {
+        printf("%s\n", hangmanParts[i]);
+    }
+}
+```
+
+* This function draws the hangman figure based on the number of incorrect `tries`.
+* It uses an array of strings (`hangmanParts`) to represent the different parts of the hangman.
+* It prints the parts of the figure up to the current number of `tries`.
+
+**5. `main` Function (Game Logic):**
+
+```c
+int main() {
+    // ... Initialization ...
+
+    while (tries < MAX_TRIES) {
+        // ... Display current state ...
+        // ... Get user input ...
+        // ... Check guess ...
+        // ... Update game state ...
+        // ... Check for win/loss ...
+    }
+
+    // ... End game message ...
+
+    return 0;
+}
+```
+
+* **Initialization:**
+    * `srand(time(NULL))`: Seeds the random number generator.
+    * `wordList`: An array of `WordWithHint` structures.
+    * `wordIndex`: Randomly selects a word from `wordList`.
+    * `secretWord`, `hint`: Gets the selected word and hint.
+    * `wordLength`: stores the length of the secret word.
+    * `guessedWord`: an array of char used to store the correctly guessed letters.
+    * `guessedLetters`: an array of booleans used to store whether or not a letter has been guessed.
+    * `tries`: Initializes the number of tries to 0.
+* **Game Loop (`while` loop):**
+    * Displays the current state of the word using `displayWord`.
+    * Draws the hangman using `drawHangman`.
+    * Prompts the user to enter a letter.
+    * Converts the input to lowercase.
+    * Checks if the letter has already been guessed.
+    * Updates `guessedLetters` if the letter is new.
+    * Checks if the guessed letter is in the secret word.
+    * Updates `guessedWord` and displays feedback.
+    * Increments `tries` if the guess is incorrect.
+    * Checks if the player has won (guessed the word) or lost (reached `MAX_TRIES`).
+* **End Game:**
+    * Displays a win or loss message.
+
+**Key Concepts:**
+
+* **Arrays:** Used to store the secret word, guessed letters, and hangman parts.
+* **Strings:** Used to represent words and hints.
+* **Structures:** Used to group related data (word and hint).
+* **Loops:** Used to iterate through the word and game logic.
+* **Conditional Statements:** Used to check guesses and determine game state.
+* **Random Number Generation:** Used to select a random word.
+* **Character Manipulation:** used to change characters to lowercase.
+* **Boolean Arrays:** used to represent the state of each letter in the alphabet.
