@@ -7,11 +7,12 @@
 #include <time.h>
 
 #define MAX_WORD_LENGTH 50
+#define MAX_HINT_LENGTH 150
 #define MAX_TRIES 6
 
 struct WordWithHint {
     char word[MAX_WORD_LENGTH];
-    char hint[MAX_WORD_LENGTH];
+    char hint[MAX_HINT_LENGTH];
 };
 
 void displayWord(const char word[], const bool guessed[]);
@@ -154,17 +155,12 @@ void displayWord(const char word[], const bool guessed[])
 
 void drawHangman(int tries)
 {
-    const char* hangmanParts[] = {
-        "    _________",
-        "   |         |",
-        "   |         O",
-        "   |        /|\\",
-        "   |        / \\",
-        "   |"
-    };
-
     printf("\n");
-    for (int i = 0; i <= tries && i < sizeof(hangmanParts) / sizeof(hangmanParts[0]); i++) {
-        printf("%s\n", hangmanParts[i]);
-    }
+    printf("  +---+\n");
+    printf("  |   |\n");
+    printf("  %s   |\n", (tries >= 1 ? "O" : " "));
+    printf(" %s%s%s  |\n", (tries >= 3 ? "/" : " "), (tries >= 2 ? "|" : " "), (tries >= 4 ? "\\" : " "));
+    printf(" %s %s  |\n", (tries >= 5 ? "/" : " "), (tries >= 6 ? "\\" : " "));
+    printf("      |\n");
+    printf("=========\n");
 }

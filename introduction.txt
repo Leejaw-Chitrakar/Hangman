@@ -54,6 +54,6 @@ The game is straightforward:
    3. Enter one letter at a time to guess.
    4. Correct guesses reveal letters; incorrect guesses contribute to the Hangman drawing.
    5. You have 6 tries before the Hangman is complete and you lose.
-   6. Try to guess the word before time runs out!
+   6. Try to guess the word before you run out of tries!
 
 Enjoy the game!

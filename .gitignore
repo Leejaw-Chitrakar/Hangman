@@ -1,0 +1,13 @@
+# Executables
+*.exe
+*.o
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary Files
+*.tmp
+*.log
